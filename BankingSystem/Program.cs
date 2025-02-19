@@ -26,11 +26,12 @@ namespace BankingSystem
                 Console.WriteLine("[P] Print Statement");
                 Console.WriteLine("[Q] Quit");
                 choice = Console.ReadLine();
-                Console.WriteLine(choice);
+                
+                string returnStatement = "Returning to main menu...\n";
 
-                if (choice == null)
+                if (string.IsNullOrWhiteSpace(choice))
                 {
-                    Console.WriteLine("Invalid choice. Please try again.");
+                    Console.WriteLine(returnStatement);
                     continue;
                 }
 
@@ -39,42 +40,36 @@ namespace BankingSystem
                     case "T":
                         Console.WriteLine("Please enter transaction details in <Date> <Account> <Type> <Amount> format \n");
                         var transactionInput = Console.ReadLine();
-                        if (transactionInput != null)
+                        if (string.IsNullOrWhiteSpace(transactionInput))
                         {
-                            processData.ProcessTransaction(transactionInput);
+                            Console.WriteLine(returnStatement);
+                            continue;
                         }
-                        else
-                        {
-                            Console.WriteLine("Invalid input. Please try again.");
-                        }
+                        processData.ProcessTransaction(transactionInput);
                         break;
                     case "I":
                         Console.WriteLine("Please enter interest rules details in <Date> <RuleId> <Rate in %> format \n");
                         var interestInput = Console.ReadLine();
-                        if (interestInput != null)
+                        if (string.IsNullOrWhiteSpace(interestInput))
                         {
-                            processData.DefineInterest(interestInput);
+                            Console.WriteLine(returnStatement);
+                            continue;
                         }
-                        else
-                        {
-                            Console.WriteLine("Invalid input. Please try again.");
-                        }
+                        processData.DefineInterest(interestInput);
                         break;
                     case "P":
-                        Console.WriteLine("Please enter account and month to generate the statement<Account> < Year >< Month >(or enter blank to go back to main menu:)\n");
+                        Console.WriteLine("Please enter account and month to generate the statement <Account> <Year><Month> (or enter blank to go back to main menu:)\n");
                         var statementInput = Console.ReadLine();
-                        if (statementInput != null)
+                        if (string.IsNullOrWhiteSpace(statementInput))
                         {
-                            processData.PrintStatement(statementInput);
+                            Console.WriteLine(returnStatement);
+                            continue;
                         }
-                        else
-                        {
-                            Console.WriteLine("Invalid input. Please try again.");
-                        }
+                        processData.PrintStatement(statementInput);
                         break;
                     case "Q":
-                        Console.WriteLine("Thank you for banking with us!");
-                        break;
+                        Console.WriteLine("Thank you for banking with AwesomeGIC Bank.\nHave a nice day!\n");
+                        return;
                     default:
                         Console.WriteLine("Invalid choice. Please try again.");
                         break;

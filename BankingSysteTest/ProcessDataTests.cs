@@ -113,38 +113,38 @@ namespace BankingSysteTest
             }
         }
 
-        //[TestMethod]
-        //public void PrintStatement_ValidAccountAndDate_PrintsStatement()
-        //{
-        //    processData = new ProcessData();
+        [TestMethod]
+        public void PrintStatement_ValidAccountAndDate_PrintsStatement()
+        {
+           ProcessData processData = new ProcessData();
 
-        //    string depositInput = "20230101 123456 D 1000";
-        //    string withdrawalInput = "20230102 123456 W 500";
-        //    processData.ProcessTransaction(depositInput);
-        //    processData.ProcessTransaction(withdrawalInput);
-        //    string input = "123456 202301";
-
-
-        //    using (var sw = new StringWriter())
-        //    {
-        //        var originalOut = Console.Out;
-        //        Console.SetOut(sw);
-        //        try
-        //        {
-        //            processData.PrintStatement(input);
-        //        }
-        //        finally
-        //        {
-        //            Console.SetOut(originalOut);
-        //        }
-        //        var result = sw.ToString().Trim();
+            string depositInput = "20230101 123456 D 1000";
+            string withdrawalInput = "20230102 123456 W 500";
+            processData.ProcessTransaction(depositInput);
+            processData.ProcessTransaction(withdrawalInput);
+            string input = "123456 202301";
 
 
-        //        Assert.IsTrue(result.Contains("Account: 123456"));
-        //        Assert.IsTrue(result.Contains("| 20230101 | 20230101-01 | D | 1000.00 | 1000.00 |"));
-        //        Assert.IsTrue(result.Contains("| 20230102 | 20230102-01 | W | 500.00 | 500.00 |"));
-        //    }
-        //}
+            using (var sw = new StringWriter())
+            {
+                var originalOut = Console.Out;
+                Console.SetOut(sw);
+                try
+                {
+                    processData.PrintStatement(input);
+                }
+                finally
+                {
+                    Console.SetOut(originalOut);
+                }
+                var result = sw.ToString().Trim();
+
+
+                Assert.IsTrue(result.Contains("Account: 123456"));
+                Assert.IsTrue(result.Contains("| 20230101 | 20230101-01 | D | 1000.00 | 1000.00 |"));
+                Assert.IsTrue(result.Contains("| 20230102 | 20230102-01 | W | 500.00 | 500.00 |"));
+            }
+        }
 
         [TestMethod]
         public void CalculateInterest_ValidAccountAndDate_CalculatesInterest()
